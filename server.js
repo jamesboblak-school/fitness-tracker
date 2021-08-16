@@ -1,3 +1,6 @@
+// Load seed data
+// ! require("./seeders/seed");
+
 // Variable to npm modules
 const express = require("express");
 const logger = require("morgan");
@@ -13,17 +16,18 @@ const app = express();
 const db = require("./models")
 
 // middleware
+app.use(logger("dev"));
 app.use(express.urlencoded({
-    extended: true
+    extended: true,
 }));
 app.use(express.json());
 app.use(express.static("public"));
 
 // connect localhost to database
-mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", {
-    useNewUrlParser: true
-}, {
-    useUnifiedTopology: true
+mongoose.connect(process.env.MONGDB_URI || 'mongodb://localhost/workout', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
 });
 
 // require routes

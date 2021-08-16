@@ -5,9 +5,12 @@ var db = require("../models");
 module.exports = function (app) {
     // get last workout
     app.get("/api/workouts", (req, res) => {
-        db.Workout.find({})
-            .then(workout => {
-                res.json(workout);
+        db.Workout.aggregate([
+         
+            { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
+          ])
+            .then(dbWorkout => {
+                res.json(dbWorkout);
             })
             .catch(err => {
                 res.json(err);
@@ -27,7 +30,10 @@ module.exports = function (app) {
     })
 
     // add exercise to Workout
-    app.put("/api/workouts/:id", ({body, params}, res) => {
+    app.put("/api/workouts/:id", ({
+        body,
+        params
+    }, res) => {
         console.log("params: " + body, params)
         const workoutId = params.id;
         let savedExercises = [];
@@ -37,17 +43,17 @@ module.exports = function (app) {
                 _id: workoutId
             })
             .then(dbWorkout => {
-                console.log(dbWorkout);
+                console.log(dbWorkout)
                 savedExercises = dbWorkout[0].exercises;
                 res.json(dbWorkout[0].exercises);
                 let allExercises = [...savedExercises, body]
-                console.log(allExercises);
+                console.log(allExercises)
                 updateWorkout(allExercises)
             })
             .catch(err => {
                 res.json(err);
             });
-
+        // update found workout
         function updateWorkout(exercises) {
             db.Workout.findByIdAndUpdate(workoutId, {
                 exercises: exercises
@@ -60,7 +66,10 @@ module.exports = function (app) {
     })
 
     app.get("/api/workouts/range", (req, res) => {
-        db.Workout.find({})
+        db.Workout.aggregate([
+         
+            { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
+          ]).limit(7)
             .then(workout => {
                 res.json(workout);
             })
