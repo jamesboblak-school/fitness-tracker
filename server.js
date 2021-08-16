@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 3000;
 // variable for express function
 const app = express();
 
+// variable for db
+const db = require("./models")
+
 // middleware
 app.use(express.urlencoded({
     extended: true
@@ -22,7 +25,8 @@ mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", {
 });
 
 // require routes
-require("./routes/routes.js");
+require("./routes/apiRoutes");
+require("./routes/htmlRoutes");
 
 app.listen(PORT, () => {
     console.log(`Fitness Tracker running on PORT ${PORT}!!`);
