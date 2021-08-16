@@ -18,7 +18,7 @@ const workoutSchema = new Schema({
             trip: true,
             required: "Enter the name of the Exercise"
         },
-        name: {
+        duration: {
             type: Number,
             trip: true,
             required: "Enter the duration of your Exercise in minutes"

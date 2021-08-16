@@ -22,6 +22,8 @@ app.use(express.static("public"));
 // connect localhost to database
 mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true
+}, {
+    useUnifiedTopology: true
 });
 
 // require routes

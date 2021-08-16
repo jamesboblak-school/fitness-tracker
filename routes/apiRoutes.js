@@ -15,7 +15,7 @@ module.exports = function (app) {
     });
 
     // create new workout
-    app.post("/api/workouts", async (req, res)=> {
+    app.post("/api/workouts", async (req, res) => {
         try {
             const response = await db.Workout.create({
                 type: "workout"
@@ -27,12 +27,9 @@ module.exports = function (app) {
     })
 
     // add exercise to Workout
-    app.put("/api/workouts/:id", ({
-        body,
-        params
-    }, res) => {
-        console.log("params: " + body, params);
-        const workoutId = params.workoutId;
+    app.put("/api/workouts/:id", ({body, params}, res) => {
+        console.log("params: " + body, params)
+        const workoutId = params.id;
         let savedExercises = [];
 
         // get saved exercises for workout
@@ -41,9 +38,9 @@ module.exports = function (app) {
             })
             .then(dbWorkout => {
                 console.log(dbWorkout);
-                savedExercises = dbWordkout[0].exercises;
-                res.json(dbWorkout[0].exercisses);
-                let allExercices = [...savedExercises, body]
+                savedExercises = dbWorkout[0].exercises;
+                res.json(dbWorkout[0].exercises);
+                let allExercises = [...savedExercises, body]
                 console.log(allExercises);
                 updateWorkout(allExercises)
             })
@@ -54,7 +51,7 @@ module.exports = function (app) {
         function updateWorkout(exercises) {
             db.Workout.findByIdAndUpdate(workoutId, {
                 exercises: exercises
-            }, function(err, doc) {
+            }, function (err, doc) {
                 if (err) {
                     console.log(err)
                 }
@@ -64,11 +61,11 @@ module.exports = function (app) {
 
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
-        .then(workout => {
-            res.json(workout);
-        })
-        .catch(err => {
-            res.json(err);
-        });
+            .then(workout => {
+                res.json(workout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
     });
 };
