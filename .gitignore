@@ -1,3 +1,6 @@
+#MacOS workaround
+.DS_Store
+
 # Logs
 logs
 *.log
