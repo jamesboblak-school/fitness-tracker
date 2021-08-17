@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // connect localhost to database
-mongoose.connect(process.env.MONGDB_URI || 'mongodb://localhost/workout', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
