@@ -5,6 +5,8 @@
 [Open](https://fitness-tracker-workouts.herokuapp.com/?id=611c807f67071e001612191e) Fitness Tracker:
 https://fitness-tracker-workouts.herokuapp.com/?id=611c807f67071e001612191e
 
+![Fitness Tracker demo gif](./assets/images/fitness-tracker_demo.gif)
+
 ## Table of Contents
 
 * [Installation](#installation)
@@ -20,14 +22,19 @@ Simply go to the Heroku deployment link and run the app in any modern browser.
 
 ## Usage 
 
-See the demo gif.  Create a workout, and add your exercises as you do them, including details about the number of reps, weight, distance, and duraition.  Keep adding exercises until your workout is complete, then go to your dashboard for a graphical overview of your progress over the past seven days.  
-
-![Fitness Tracker demo gif](./assets/images/fitness-tracker_demo.gif)
+Create a workout, and add your exercises as you do them, including details about the number of reps, sets, weight, distance, and duration.  Keep adding exercises until your workout is complete, then go to your dashboard for a graphical overview of your progress over the past seven days.  See the demo gif above, or video on [YouTube](https://youtu.be/0OmG1WbFPak).
 
 
 ## Credits
 
-UC Berkeley Coding Bootcamp, Mongoose.com, developer.mozilla.org, w3schools.com, youtube.com  
+* UC Berkeley Coding Bootcamp
+* Mongoose.com
+* developer.mozilla.org
+* w3schools.com
+* youtube.com
+* UC Berkeley Coding Bootcamp
+* Michell Brito
+* Manuel Nunes
 
 
 ## License
